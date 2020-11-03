@@ -45,5 +45,33 @@ Download AdvancedAFK here: <a href="#">TODO setup download site</a>
 Todo: Features here
 
 ## Commands & permissions
+#### `/aafk`
+Use:
+- `/aafk` and `/aafk help` `/`
+<br>This command shows help message.
 
-Todo: stuff here
+- `/aafk list` `aafk.list`
+<br>This command lists all AFK players.
+  
+<br>
+
+- `/aafk clean` `aafk.clean`
+<br>This command removes all afk players from the server.
+<br>Optional flags:
+  - `--force` removes all AFK players (permissions are ignored).
+  
+<br>
+
+- `/aafk lookup <player>` `aafk.lookup`
+<br>This command provides detailed info about the player.
+<br>Optional flags:
+  - `-v` provides more verbose information.
+  
+<br>
+
+- `/aafk reload` `aafk.reload`
+<br>This is command reloads the plugin
+
+#### `Actions`
+Kick bypass: `aafk.bypass.kick` <br>
+Complete ignore (player with this permission is ignored by the plugin): `aafk.bypass.total`

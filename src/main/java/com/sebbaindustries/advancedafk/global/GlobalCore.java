@@ -3,6 +3,10 @@ package com.sebbaindustries.advancedafk.global;
 import com.sebbaindustries.advancedafk.Core;
 import com.sebbaindustries.advancedafk.commands.CommandManager;
 import com.sebbaindustries.advancedafk.engine.DetectionEngine;
+import com.sebbaindustries.advancedafk.engine.configuration.FileManager;
+import com.sebbaindustries.advancedafk.engine.configuration.Messages;
+import com.sebbaindustries.advancedafk.engine.configuration.Settings;
+import com.sebbaindustries.advancedafk.engine.listeners.Listeners;
 
 import java.util.logging.Level;
 
@@ -12,24 +16,25 @@ import java.util.logging.Level;
  */
 public class GlobalCore {
 
-    private final Core core;
+    public final Core core;
 
-    //public FileManager fileManager;
-    //public Setting setting;
-    //public Message message;
+    public FileManager fileManager;
+    public Settings settings;
+    public Messages messages;
     public CommandManager commandManager;
     public DetectionEngine detectionEngine;
 
     public GlobalCore(Core core) {
         this.core = core;
 
-        //this.fileManager = new FileManager(core);
+        this.fileManager = new FileManager(core);
 
-        //this.message = new Message();
-        //this.setting = new Setting();
+        this.messages = new Messages();
+        this.settings = new Settings();
         this.commandManager = new CommandManager(core);
         detectionEngine = new DetectionEngine();
         detectionEngine.initialize();
+        new Listeners(core);
     }
 
     public void log(String message) {

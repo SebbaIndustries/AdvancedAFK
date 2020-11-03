@@ -1,6 +1,7 @@
 package com.sebbaindustries.advancedafk.global;
 
 import com.sebbaindustries.advancedafk.Core;
+import com.sebbaindustries.advancedafk.engine.configuration.FileManager;
 
 import java.util.logging.Level;
 
