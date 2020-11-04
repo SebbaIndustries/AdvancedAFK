@@ -2,14 +2,16 @@ package com.sebbaindustries.advancedafk.engine.buffer;
 
 import com.sebbaindustries.advancedafk.Core;
 import com.sebbaindustries.advancedafk.engine.buffer.components.BufferedPlayer;
+import com.sebbaindustries.advancedafk.engine.configuration.Messages;
+import com.sebbaindustries.advancedafk.utils.Color;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class DataBuffer {
 
-    public HashMap<Player, BufferedPlayer> players = new HashMap<>();
+    public ConcurrentHashMap<Player, BufferedPlayer> players = new ConcurrentHashMap<>();
 
     public void add(Player player) {
         players.put(player, new BufferedPlayer(player));
@@ -22,14 +24,21 @@ public class DataBuffer {
     public void clean() {
        players.forEach((player, buffer) -> {
            if (buffer.getAfkTime() < Core.gCore().settings.afkKickTime) {
+               int timeLeft = Core.gCore().settings.afkKickTime - Core.gCore().settings.afkKickWarn;
+               if (timeLeft > 0 && buffer.getAfkTime() >= timeLeft) {
+                   if (!buffer.bypassAFK()) player.sendMessage(
+                           Color.color(
+                           Messages.get("afk_pre_kick").replace("{seconds}", String.valueOf(Core.gCore().settings.afkKickTime - buffer.getAfkTime()))
+                           )
+                   );
+               }
                return;
            }
            if (buffer.bypassAFK()) {
                return;
            }
            Bukkit.getScheduler().runTask(Core.gCore().core, () -> {
-               // TODO: Add kick message
-               player.kickPlayer("Yeet!");
+               player.kickPlayer(Color.color(Messages.get("afk_kick_normal")));
            });
        });
     }
@@ -45,12 +54,8 @@ public class DataBuffer {
                 return;
             }
             int points = difference(buffer);
-            // TODO: Remove this
-            System.out.println("Points: " + points);
             if (points >= Core.gCore().settings.detectionPoints) {
                 buffer.flagAFK();
-                // TODO: Remove this
-                player.sendMessage("AFK " + buffer.getAfkTime());
                 return;
             }
             buffer.reset();

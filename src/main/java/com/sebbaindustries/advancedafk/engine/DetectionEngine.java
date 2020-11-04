@@ -23,7 +23,6 @@ public class DetectionEngine {
                 Core.gCore().logSevere("AdvancedAFK engine thread is running slow. Detection time took " + delta + "ms!");
                 continue;
             }
-            System.out.println("Delta: " + delta);
             try {
                 Thread.sleep((1000L - delta));
             } catch (InterruptedException e) {

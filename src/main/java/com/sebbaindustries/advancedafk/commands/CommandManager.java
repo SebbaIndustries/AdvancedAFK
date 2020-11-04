@@ -5,6 +5,7 @@ import com.sebbaindustries.advancedafk.commands.actions.AdvancedAFK;
 import com.sebbaindustries.advancedafk.commands.components.CommandFactory;
 import com.sebbaindustries.advancedafk.commands.components.ICmd;
 import com.sebbaindustries.advancedafk.commands.components.ITab;
+import com.sebbaindustries.advancedafk.engine.configuration.Messages;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -35,9 +36,12 @@ public class CommandManager implements CommandExecutor, TabCompleter {
 
         commands.forEach(cmd -> {
             if (cmd.command().equalsIgnoreCase(label)) {
+                if (cmd.permission() == null) {
+                    ((ICmd) cmd).execute(sender, args);
+                    return;
+                }
                 if (!sender.hasPermission(cmd.permission())) {
-                    // TODO: add no permission message
-                    sender.sendMessage("No permission!");
+                    sender.sendMessage(Messages.get("no_permission"));
                     return;
                 }
                 ((ICmd) cmd).execute(sender, args);
@@ -52,7 +56,8 @@ public class CommandManager implements CommandExecutor, TabCompleter {
         for (CommandFactory cmd : commands) {
             if (cmd.command().equalsIgnoreCase(label)) {
                 List<String> tab = ((ITab) cmd).complete(sender, args);
-                return StringUtil.copyPartialMatches(args[args.length - 1], tab, new ArrayList<>(tab.size()));
+                //return StringUtil.copyPartialMatches(args[args.length - 1], tab, new ArrayList<>(tab.size()));
+                return null;
             }
         }
         return null;

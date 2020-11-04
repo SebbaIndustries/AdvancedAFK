@@ -26,6 +26,7 @@ public class Settings {
         afkKickTime = Integer.parseInt(configuration.getProperty("afk.kick.time"));
         afkKickPlayers = Integer.parseInt(configuration.getProperty("afk.kick.players"));
         afkKickTPS = Double.parseDouble(configuration.getProperty("afk.kick.tps"));
+        afkKickWarn = Integer.parseInt(configuration.getProperty("afk.kick.warn"));
     }
 
     public double detectionX = 0.5;
@@ -37,6 +38,7 @@ public class Settings {
     public int detectionPoints = 4;
 
     public int afkKickTime = 600;
+    public int afkKickWarn = 10;
     public int afkKickPlayers = 20;
     public double afkKickTPS = 16.4;
 

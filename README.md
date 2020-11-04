@@ -74,4 +74,3 @@ Use:
 
 #### `Actions`
 Kick bypass: `aafk.bypass.kick` <br>
-Complete ignore (player with this permission is ignored by the plugin): `aafk.bypass.total`
