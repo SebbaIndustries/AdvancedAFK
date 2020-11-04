@@ -31,14 +31,7 @@ Download AdvancedAFK here: <a href="#">TODO setup download site</a>
 
 <b>Message configuration:</b>
 <br>All messages are stored in `messages.properites`, you can change them to your liking.
-<br>One difference is in place holders: every place holder starts with `{` and ends with `}`, inside you can call the place holder.
 
-<b>AdvancedAFK Placeholders:</b> 
-```
-{player.name}
-{player.displayname}
-{player.afktime}
-```
 
 ## Features
 

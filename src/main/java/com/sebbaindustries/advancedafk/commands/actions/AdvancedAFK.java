@@ -13,10 +13,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.function.Predicate;
 
 public class AdvancedAFK extends CommandFactory implements ICmd, ITab {
 
@@ -100,12 +98,12 @@ public class AdvancedAFK extends CommandFactory implements ICmd, ITab {
             }
         });
 
-        sender.sendMessage(Color.color("[AdvancedAFK] Removed " + i.toString() + " players!"));
+        sender.sendMessage(Color.color("&8[&dAdvanced&cAFK&8]&7 Removed &f" + i.toString() + " &7players!"));
     }
 
     private void lookup() {
-        if (args.length < 1) {
-            sender.sendMessage("IDIOT you FORGOT the FUCKING player!");
+        if (args.length < 2) {
+            sender.sendMessage(Color.color("&8[&dAdvanced&cAFK&8]&7 Missing player from the arguments!"));
             return;
         }
         String playerName = args[1];
@@ -123,7 +121,7 @@ public class AdvancedAFK extends CommandFactory implements ICmd, ITab {
             }
         });
         if (!found) {
-            sender.sendMessage("[AdvancedAFK] Player not found!");
+            sender.sendMessage(Color.color("&8[&dAdvanced&cAFK&8]&7 Player not found!"));
         }
     }
 
@@ -131,21 +129,23 @@ public class AdvancedAFK extends CommandFactory implements ICmd, ITab {
 
     private void nonVerboseLookup(Player player, BufferedPlayer buffer) {
         found = true;
-        sender.sendMessage(Color.color("Player lookup: " + player.getName() + "(Non-Verbose)"));
-        sender.sendMessage(Color.color("AFK time: " + buffer.getAfkTime()));
-        sender.sendMessage(Color.color("Bypass AFK: " + buffer.bypassAFK()));
+        sender.sendMessage(Color.color("&7Executing player lookup for user &5" + player.getName() + "&7.."));
+        sender.sendMessage(Color.color(" &f- &7Lookup Type: &fNon-Verbose"));
+        sender.sendMessage(Color.color(" &f- &7AFK Time: &f" + buffer.getAfkTime() + "s"));
+        sender.sendMessage(Color.color("&7&oUser has bypass AFK: " + buffer.bypassAFK()));
     }
 
     private void verboseLookup(Player player, BufferedPlayer buffer) {
         found = true;
-        sender.sendMessage(Color.color("Player lookup: " + player.getName() + "(Verbose)"));
+        sender.sendMessage(Color.color("&7Executing player lookup for user &5" + player.getName() + "&7.."));
+        sender.sendMessage(Color.color(" &f- &7Lookup Type: &fVerbose"));
         sender.sendMessage(ObjectUtils.deserializeObjectToString(buffer));
     }
 
     private void reload() {
         Core.gCore().settings = new Settings();
         Core.gCore().messages = new Messages();
-        sender.sendMessage("[AdvancedAFK] Reload finished!");
+        sender.sendMessage(Color.color("&8[&dAdvanced&cAFK&8]&7 Reload finished!"));
     }
 
     @Override
