@@ -6,6 +6,10 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
+/**
+ * @author SebbaIndustries
+ * @version 1.0
+ */
 public class Settings {
 
     public double detectionX = 0.5;

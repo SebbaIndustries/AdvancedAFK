@@ -18,6 +18,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * @author SebbaIndustries
+ * @version 1.0
+ */
 public class CommandManager implements CommandExecutor, TabCompleter {
 
     private final List<CommandFactory> commands = new ArrayList<>();
@@ -31,6 +35,14 @@ public class CommandManager implements CommandExecutor, TabCompleter {
 
     }
 
+    /**
+     * All afk commands execute here
+     * @param sender Player/console instance
+     * @param command No idea
+     * @param label alias
+     * @param args the good stuff
+     * @return true
+     */
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
 
@@ -51,6 +63,14 @@ public class CommandManager implements CommandExecutor, TabCompleter {
         return true;
     }
 
+    /**
+     * Tab complete for all commands
+     * @param sender player/console instance
+     * @param command no idea
+     * @param label alias
+     * @param args the good stuff
+     * @return list of completions or null->list of all online players
+     */
     @Override
     public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         for (CommandFactory cmd : commands) {

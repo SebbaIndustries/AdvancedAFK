@@ -5,8 +5,8 @@ import com.sebbaindustries.advancedafk.Core;
 import java.util.logging.Level;
 
 /**
- * @author <b>SebbaIndustries</b>
- * @version <b>1.0</b>
+ * @author SebbaIndustries
+ * @version 1.0
  */
 public class ServerPlugin {
 
@@ -21,10 +21,17 @@ public class ServerPlugin {
         throw new IllegalAccessError("Plugin core dumped due to illegal access of ServerPlugin class!");
     }
 
+    /**
+     * Loads Core.class instance
+     * @param core Manin plugin class
+     */
     public final void load(Core core) {
         this.core = core;
     }
 
+    /**
+     * Initializes global core and setups static link
+     */
     public final void initialize() {
         if (core == null) {
             coreDump();
@@ -34,6 +41,9 @@ public class ServerPlugin {
         Core.globalCore.detectionEngine.initialize();
     }
 
+    /**
+     * Terminates the plugin instance
+     */
     public final void terminate() {
         if (core == null) {
             coreDump();

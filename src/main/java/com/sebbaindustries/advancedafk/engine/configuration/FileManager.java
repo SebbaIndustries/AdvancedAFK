@@ -4,6 +4,10 @@ import com.sebbaindustries.advancedafk.Core;
 
 import java.io.File;
 
+/**
+ * @author SebbaIndustries
+ * @version 1.0
+ */
 public class FileManager {
 
     /*
@@ -11,13 +15,14 @@ public class FileManager {
      */
     public File configuration;
     /*
-   messages.properties
+    messages.properties
     */
     public File messages;
 
     public FileManager(Core core) {
         generateConfiguration(core);
         generateMessages(core);
+        generateREADME(core);
     }
 
     public void generateConfiguration(Core core) {

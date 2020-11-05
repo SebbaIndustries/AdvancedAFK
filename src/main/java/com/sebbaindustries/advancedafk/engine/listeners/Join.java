@@ -11,6 +11,11 @@ import org.bukkit.event.player.PlayerJoinEvent;
  */
 public final class Join implements Listener {
 
+    /**
+     * Activates when player joins
+     *
+     * @param e Event
+     */
     @EventHandler
     public void onPlayerJoin(final PlayerJoinEvent e) {
         Core.gCore().detectionEngine.dataBuffer.add(e.getPlayer());

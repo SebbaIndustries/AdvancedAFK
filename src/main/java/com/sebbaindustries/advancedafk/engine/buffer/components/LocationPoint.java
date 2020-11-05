@@ -1,5 +1,9 @@
 package com.sebbaindustries.advancedafk.engine.buffer.components;
 
+/**
+ * @author SebbaIndustries
+ * @version 1.0
+ */
 public class LocationPoint {
 
     private final double x;

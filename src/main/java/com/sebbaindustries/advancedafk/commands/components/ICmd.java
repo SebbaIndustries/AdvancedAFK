@@ -4,7 +4,7 @@ import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * @author sebba
+ * @author SebbaIndustries
  * @version 1.0
  */
 public interface ICmd {

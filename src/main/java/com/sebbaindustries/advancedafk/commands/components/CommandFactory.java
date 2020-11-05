@@ -1,8 +1,7 @@
 package com.sebbaindustries.advancedafk.commands.components;
 
-
 /**
- * @author sebba
+ * @author SebbaIndustries
  * @version 1.0
  */
 public abstract class CommandFactory {

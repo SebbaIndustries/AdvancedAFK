@@ -2,6 +2,10 @@ package com.sebbaindustries.advancedafk.utils;
 
 import java.util.regex.Pattern;
 
+/**
+ * @author SebbaIndustries
+ * @version 1.0
+ */
 public class StringParser {
 
     private final String string;

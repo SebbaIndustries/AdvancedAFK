@@ -11,8 +11,8 @@ import com.sebbaindustries.advancedafk.engine.listeners.Listeners;
 import java.util.logging.Level;
 
 /**
- * @author <b>SebbaIndustries</b>
- * @version <b>1.0</b>
+ * @author SebbaIndustries
+ * @version 1.0
  */
 public class GlobalCore {
 
@@ -36,18 +36,33 @@ public class GlobalCore {
         new Listeners(core);
     }
 
+    /**
+     * Logs normal #INFO style message to the console
+     * @param message String message, color will be default
+     */
     public void log(String message) {
         core.getLogger().log(Level.INFO, message);
     }
 
+    /**
+     * Logs normal #ERROR style message to the console
+     * @param message String message, color will be red
+     */
     public void logSevere(String message) {
         core.getLogger().log(Level.SEVERE, message);
     }
 
+    /**
+     * Logs normal #WARN style message to the console
+     * @param message String message, color will be yellow
+     */
     public void logWarn(String message) {
         core.getLogger().log(Level.WARNING, message);
     }
 
+    /**
+     * Terminates AdvancedAFK detection engine
+     */
     public void terminate() {
         log("Terminating AdvancedAFK plugin, please wait!");
         detectionEngine.terminate();

@@ -3,6 +3,10 @@ package com.sebbaindustries.advancedafk.utils;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+/**
+ * @author SebbaIndustries
+ * @version 1.0
+ */
 public final class ObjectUtils {
 
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
