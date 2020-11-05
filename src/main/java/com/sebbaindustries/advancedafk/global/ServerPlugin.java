@@ -1,7 +1,6 @@
 package com.sebbaindustries.advancedafk.global;
 
 import com.sebbaindustries.advancedafk.Core;
-import com.sebbaindustries.advancedafk.engine.configuration.FileManager;
 
 import java.util.logging.Level;
 
@@ -13,13 +12,13 @@ public class ServerPlugin {
 
     private Core core;
 
+    public static ServerPlugin INSTANCE() {
+        return new ServerPlugin();
+    }
+
     private void coreDump() {
         core.getLogger().log(Level.SEVERE, "Plugin core dumped due to illegal access of ServerPlugin class!");
         throw new IllegalAccessError("Plugin core dumped due to illegal access of ServerPlugin class!");
-    }
-
-    public static ServerPlugin INSTANCE() {
-        return new ServerPlugin();
     }
 
     public final void load(Core core) {
@@ -32,6 +31,7 @@ public class ServerPlugin {
             return;
         }
         Core.globalCore = new GlobalCore(core);
+        Core.globalCore.detectionEngine.initialize();
     }
 
     public final void terminate() {

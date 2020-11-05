@@ -56,8 +56,8 @@ public class CommandManager implements CommandExecutor, TabCompleter {
         for (CommandFactory cmd : commands) {
             if (cmd.command().equalsIgnoreCase(label)) {
                 List<String> tab = ((ITab) cmd).complete(sender, args);
-                //return StringUtil.copyPartialMatches(args[args.length - 1], tab, new ArrayList<>(tab.size()));
-                return null;
+                return StringUtil.copyPartialMatches(args[args.length - 1], tab, new ArrayList<>(tab.size()));
+                //return null;
             }
         }
         return null;

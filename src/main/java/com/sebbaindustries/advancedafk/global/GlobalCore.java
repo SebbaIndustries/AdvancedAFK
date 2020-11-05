@@ -33,7 +33,6 @@ public class GlobalCore {
         this.settings = new Settings();
         this.commandManager = new CommandManager(core);
         detectionEngine = new DetectionEngine();
-        detectionEngine.initialize();
         new Listeners(core);
     }
 

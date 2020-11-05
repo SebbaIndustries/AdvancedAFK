@@ -8,6 +8,20 @@ import java.util.Properties;
 
 public class Settings {
 
+    public double detectionX = 0.5;
+    public double detectionY = 0.3;
+    public double detectionZ = 0.5;
+    public float detectionYaw = 5.0f;
+    public float detectionPitch = 1.0f;
+    public int detectionBufferLimit = 16;
+    public int detectionPoints = 4;
+    public int afkKickTime = 600;
+    public int afkKickWarn = 10;
+    public int afkKickPlayers = 20;
+    public double afkKickTPS = 16.4;
+    public int afkKickTPSTime = 10;
+    private Properties configuration = null;
+
     public Settings() {
         configuration = new Properties();
         try {
@@ -26,22 +40,8 @@ public class Settings {
         afkKickTime = Integer.parseInt(configuration.getProperty("afk.kick.time"));
         afkKickPlayers = Integer.parseInt(configuration.getProperty("afk.kick.players"));
         afkKickTPS = Double.parseDouble(configuration.getProperty("afk.kick.tps"));
+        afkKickTPSTime = Integer.parseInt(configuration.getProperty("afk.kick.tps.time"));
         afkKickWarn = Integer.parseInt(configuration.getProperty("afk.kick.warn"));
     }
-
-    public double detectionX = 0.5;
-    public double detectionY = 0.3;
-    public double detectionZ = 0.5;
-    public float detectionYaw = 5.0f;
-    public float detectionPitch = 1.0f;
-    public int detectionBufferLimit = 16;
-    public int detectionPoints = 4;
-
-    public int afkKickTime = 600;
-    public int afkKickWarn = 10;
-    public int afkKickPlayers = 20;
-    public double afkKickTPS = 16.4;
-
-    private Properties configuration = null;
 
 }

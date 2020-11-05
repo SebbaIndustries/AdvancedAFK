@@ -7,9 +7,8 @@ import java.util.concurrent.CompletableFuture;
 
 public class DetectionEngine {
 
-    private volatile boolean running = false;
     public DataBuffer dataBuffer;
-
+    private volatile boolean running = false;
 
     private void detectionLoop() {
         while (running) {

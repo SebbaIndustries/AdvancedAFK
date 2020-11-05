@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 public class Color {
 
-    private static Pattern HEX_PATTERN = Pattern.compile("#<([A-Fa-f0-9]){6}>");
+    private static final Pattern HEX_PATTERN = Pattern.compile("#<([A-Fa-f0-9]){6}>");
 
     public static String color(String s) {
 
@@ -18,7 +18,7 @@ public class Color {
 
             hexString = "#" + hexString.substring(2, hexString.length() - 1);
             ChatColor hex = ChatColor.of(hexString);
-            String  before = s.substring(0, matcher.start());
+            String before = s.substring(0, matcher.start());
             String after = s.substring(matcher.end());
 
             s = before + hex + after;

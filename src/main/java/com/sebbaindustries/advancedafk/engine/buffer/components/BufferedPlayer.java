@@ -7,6 +7,12 @@ import java.util.Arrays;
 
 public class BufferedPlayer {
 
+    private final LocationPoint[] locations = new LocationPoint[60];
+    private boolean bypass = false;
+    private boolean isAFK = false;
+    private int afkTime = 0;
+    private int afkTimeBuffer = 0;
+    private int pause;
     public BufferedPlayer(Player player) {
         Arrays.fill(locations, new LocationPoint(
                 player.getLocation().getX(),
@@ -19,25 +25,22 @@ public class BufferedPlayer {
         if (player.hasPermission("aafk.bypass.kick")) bypass = true;
     }
 
-    private boolean bypass = false;
-    private boolean isAFK = false;
-    private int afkTime = 0;
-    private int afkTimeBuffer = 0;
-    private int pause;
-    private final LocationPoint[] locations = new LocationPoint[60];
-
     public boolean bypassAFK() {
         return bypass;
     }
+
     public int getPause() {
         return pause;
     }
+
     public int getAfkTime() {
         return afkTime;
     }
+
     public void updateTime() {
         pause--;
     }
+
     public LocationPoint[] getLocations() {
         return locations;
     }

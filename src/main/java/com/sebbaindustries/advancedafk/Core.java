@@ -5,7 +5,6 @@ import com.sebbaindustries.advancedafk.global.ServerPlugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -31,16 +30,18 @@ import java.util.logging.Logger;
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE <br>
  * SOFTWARE. <br>
  * <br>
+ *
  * @author <b>SebbaIndustries</b>
  * @version <b>1.0</b>
  */
 public final class Core extends JavaPlugin {
 
-    private final ServerPlugin plugin = ServerPlugin.INSTANCE();
     public static GlobalCore globalCore = null;
+    private final ServerPlugin plugin = ServerPlugin.INSTANCE();
 
     /**
      * Safe way to get GlobalCore class
+     *
      * @return GlobalCore class instance
      */
     public static GlobalCore gCore() {

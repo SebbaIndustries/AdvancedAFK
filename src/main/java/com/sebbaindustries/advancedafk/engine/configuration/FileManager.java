@@ -6,15 +6,19 @@ import java.io.File;
 
 public class FileManager {
 
-    public FileManager(Core core) {
-        generateConfiguration(core);
-        generateMessages(core);
-    }
-
     /*
     configuration.properties
      */
     public File configuration;
+    /*
+   messages.properties
+    */
+    public File messages;
+
+    public FileManager(Core core) {
+        generateConfiguration(core);
+        generateMessages(core);
+    }
 
     public void generateConfiguration(Core core) {
         if (configuration == null) {
@@ -24,11 +28,6 @@ public class FileManager {
             core.saveResource("configuration.properties", false);
         }
     }
-
-     /*
-    messages.properties
-     */
-    public File messages;
 
     /**
      * Generates messages.properties File

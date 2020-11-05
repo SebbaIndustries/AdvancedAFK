@@ -11,6 +11,8 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class DataBuffer {
 
+    private int tpsStrikes = 0;
+
     public ConcurrentHashMap<Player, BufferedPlayer> players = new ConcurrentHashMap<>();
 
     public void add(Player player) {
@@ -22,25 +24,42 @@ public class DataBuffer {
     }
 
     public void clean() {
-       players.forEach((player, buffer) -> {
-           if (buffer.getAfkTime() < Core.gCore().settings.afkKickTime) {
-               int timeLeft = Core.gCore().settings.afkKickTime - Core.gCore().settings.afkKickWarn;
-               if (timeLeft > 0 && buffer.getAfkTime() >= timeLeft) {
-                   if (!buffer.bypassAFK()) player.sendMessage(
-                           Color.color(
-                           Messages.get("afk_pre_kick").replace("{seconds}", String.valueOf(Core.gCore().settings.afkKickTime - buffer.getAfkTime()))
-                           )
-                   );
-               }
-               return;
-           }
-           if (buffer.bypassAFK()) {
-               return;
-           }
-           Bukkit.getScheduler().runTask(Core.gCore().core, () -> {
-               player.kickPlayer(Color.color(Messages.get("afk_kick_normal")));
-           });
-       });
+        double tps = Bukkit.getServer().getTPS()[0];
+        if (tps <= Core.gCore().settings.afkKickTPS) tpsStrikes++;
+        if (tps > Core.gCore().settings.afkKickTPS && tpsStrikes > 0) tpsStrikes--;
+        if (tpsStrikes >= Core.gCore().settings.afkKickTPSTime) {
+            cleanPlayers(true);
+            tpsStrikes = 0;
+            return;
+        }
+        if (players.size() < Core.gCore().settings.afkKickPlayers) return;
+        cleanPlayers(false);
+    }
+
+    private void cleanPlayers(boolean tps) {
+        players.forEach((player, buffer) -> {
+            if (buffer.getAfkTime() < Core.gCore().settings.afkKickTime) {
+                int timeLeft = Core.gCore().settings.afkKickTime - Core.gCore().settings.afkKickWarn;
+                if (timeLeft > 0 && buffer.getAfkTime() >= timeLeft) {
+                    if (!buffer.bypassAFK()) player.sendMessage(
+                            Color.color(
+                                    Messages.get("afk_pre_kick").replace("{seconds}", String.valueOf(Core.gCore().settings.afkKickTime - buffer.getAfkTime()))
+                            )
+                    );
+                }
+                return;
+            }
+            if (buffer.bypassAFK()) {
+                return;
+            }
+            Bukkit.getScheduler().runTask(Core.gCore().core, () -> {
+                if (tps) {
+                    player.kickPlayer(Color.color(Messages.get("afk_kick_tps")));
+                    return;
+                }
+                player.kickPlayer(Color.color(Messages.get("afk_kick_normal")));
+            });
+        });
     }
 
     public void update() {
@@ -70,11 +89,11 @@ public class DataBuffer {
         float[] diffPitch = new float[59];
 
         for (int i = 0; i < 59; i++) {
-            diffX[i] = Math.abs(player.getLocations()[i].getX() - player.getLocations()[i+1].getX());
-            diffY[i] = Math.abs(player.getLocations()[i].getY() - player.getLocations()[i+1].getY());
-            diffZ[i] = Math.abs(player.getLocations()[i].getZ() - player.getLocations()[i+1].getZ());
-            diffYaw[i] = Math.abs(player.getLocations()[i].getYaw() - player.getLocations()[i+1].getYaw());
-            diffPitch[i] = Math.abs(player.getLocations()[i].getPitch() - player.getLocations()[i+1].getPitch());
+            diffX[i] = Math.abs(player.getLocations()[i].getX() - player.getLocations()[i + 1].getX());
+            diffY[i] = Math.abs(player.getLocations()[i].getY() - player.getLocations()[i + 1].getY());
+            diffZ[i] = Math.abs(player.getLocations()[i].getZ() - player.getLocations()[i + 1].getZ());
+            diffYaw[i] = Math.abs(player.getLocations()[i].getYaw() - player.getLocations()[i + 1].getYaw());
+            diffPitch[i] = Math.abs(player.getLocations()[i].getPitch() - player.getLocations()[i + 1].getPitch());
         }
 
         double xPointA = 0.0;
