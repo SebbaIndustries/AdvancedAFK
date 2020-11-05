@@ -252,7 +252,6 @@ public class AdvancedAFK extends CommandFactory implements ICmd, ITab {
      */
     @Override
     public List<String> complete(@NotNull CommandSender sender, @NotNull String[] args) {
-        System.out.println(Arrays.toString(args));
         if (args.length == 1) {
             List<String> arg0 = new ArrayList<>();
             arg0.add("list");
