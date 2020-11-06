@@ -71,7 +71,6 @@ public class AdvancedAFK extends CommandFactory implements ICmd, ITab {
      */
     private void help() {
         sender.sendMessage(" ");
-        sender.sendMessage(Color.format("&8[&dAdvanced&cAFK&8]&7 Help"));
         sender.sendMessage(Color.format("&d/aafk list"));
         sender.sendMessage(Color.format(" &f- &7Lists all players and shows their status and AFK time."));
         sender.sendMessage(Color.format("&d/aafk clean"));
