@@ -66,12 +66,10 @@ public class DataBuffer {
      */
     private void cleanPlayers(boolean tps) {
         players.forEach((player, buffer) -> {
-            if (buffer.getAfkTime() < Core.gCore().settings.afkKickTime) {
+            // Bypass AFK Kick
+            if (buffer.bypassAFK()) return;
 
-                // Bypass AFK Kick
-                if (buffer.bypassAFK()) {
-                    return;
-                }
+            if (buffer.getAfkTime() < Core.gCore().settings.afkKickTime) {
 
                 // Warn messages for the player before the kick
                 int timeLeft = Core.gCore().settings.afkKickTime - Core.gCore().settings.afkKickWarn;
@@ -98,6 +96,7 @@ public class DataBuffer {
      * Updates players locations in the buffer
      */
     public void update() {
+        Core.gCore().timings.playerCount = players.size();
         players.forEach((player, buffer) -> buffer.updateLocation(player));
     }
 

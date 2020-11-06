@@ -25,6 +25,7 @@ public class DetectionEngine {
 
             // Speed check
             long delta = passedTime - currentTime;
+            Core.gCore().timings.addDelta(delta);
             if (delta >= 1000L) {
                 Core.gCore().logSevere("AdvancedAFK engine thread is running slow. Detection time took " + delta + "ms!");
                 continue;

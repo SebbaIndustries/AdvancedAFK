@@ -7,6 +7,7 @@ import com.sebbaindustries.advancedafk.engine.configuration.FileManager;
 import com.sebbaindustries.advancedafk.engine.configuration.Messages;
 import com.sebbaindustries.advancedafk.engine.configuration.Settings;
 import com.sebbaindustries.advancedafk.engine.listeners.Listeners;
+import com.sebbaindustries.advancedafk.engine.profiler.Timings;
 
 import java.util.logging.Level;
 
@@ -23,6 +24,7 @@ public class GlobalCore {
     public Messages messages;
     public CommandManager commandManager;
     public DetectionEngine detectionEngine;
+    public Timings timings;
 
     public GlobalCore(Core core) {
         this.core = core;
@@ -31,6 +33,7 @@ public class GlobalCore {
 
         this.messages = new Messages();
         this.settings = new Settings();
+        this.timings = new Timings();
         this.commandManager = new CommandManager(core);
         detectionEngine = new DetectionEngine();
         new Listeners(core);

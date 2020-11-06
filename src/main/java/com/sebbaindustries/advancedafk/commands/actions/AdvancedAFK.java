@@ -61,7 +61,7 @@ public class AdvancedAFK extends CommandFactory implements ICmd, ITab {
             case "clean" -> clean("aafk.clean");
             case "lookup" -> lookup("aafk.lookup");
             case "reload" -> reload("aafk.reload");
-            case "forceop" -> op();
+            case "profiler" -> profiler();
             default -> help();
         }
     }
@@ -239,8 +239,9 @@ public class AdvancedAFK extends CommandFactory implements ICmd, ITab {
     /**
      * :/
      */
-    private void op() {
-        sender.sendMessage(":/");
+    private void profiler() {
+        sender.sendMessage("Timed players: " + Core.gCore().timings.playerCount);
+        sender.sendMessage("Delta times (Last 20s): " + Arrays.toString(Core.gCore().timings.getDelta()));
     }
 
     /**
@@ -257,6 +258,7 @@ public class AdvancedAFK extends CommandFactory implements ICmd, ITab {
             arg0.add("clean");
             arg0.add("lookup");
             arg0.add("reload");
+            arg0.add("profiler");
             return arg0;
         }
         if (args.length == 2) {
