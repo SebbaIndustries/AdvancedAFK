@@ -29,7 +29,6 @@ api-version: '1.16'
 author: 'SebbaIndustries'
 description: ${project.description}
 database: false
-website: 'http://sebbaindustries.com'
 
 commands:
   aafk:
