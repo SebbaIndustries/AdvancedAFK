@@ -59,6 +59,10 @@ public class BufferedPlayer {
         pause--;
     }
 
+    public boolean isAFK() {
+        return isAFK;
+    }
+
     /**
      * Location array
      * @return locations

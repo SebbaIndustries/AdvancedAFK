@@ -12,6 +12,7 @@ public class Listeners {
     public Listeners(@NotNull final Core core) {
         core.getServer().getPluginManager().registerEvents(new Join(), core);
         core.getServer().getPluginManager().registerEvents(new Quit(), core);
+        core.getServer().getPluginManager().registerEvents(new Spawner(), core);
     }
 
 }
